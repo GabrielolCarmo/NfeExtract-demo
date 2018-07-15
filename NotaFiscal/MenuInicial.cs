@@ -16,12 +16,11 @@ namespace NotaFiscal
     public partial class MenuInicial : Form
     {
         private List<string> ListaPathsImagem { get; set; }
-        private string NotaFiscal { get; set; }
-
 
         public MenuInicial()
         {
             InitializeComponent();
+            ListaPathsImagem = new List<string>();
         }
 
         #region Botões
@@ -50,7 +49,6 @@ namespace NotaFiscal
 
             var visionExecutor = new Vision();
             var listaPathNotas = fotosSelecionadas.Items.Cast<string>().ToList();
-
 
             foreach (string nota in listaPathNotas)   //Vai executar a cada elemento do listBox      
             {
