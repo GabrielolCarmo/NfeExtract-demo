@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace NotaFiscal.api
 {
-    public class Vision
+	public class Vision
 	{
 		const string subscriptionKey = "a04135d4b311421f9c1c10f765fe1050";
-        const string uriBase = "https://eastus.api.cognitive.microsoft.com/vision/v2.0/ocr";  //  https://westcentralus.api.cognitive.microsoft.com/vision/v2.0/ocr";
+		const string uriBase = "https://eastus.api.cognitive.microsoft.com/vision/v2.0/ocr";
 
 		public async Task<string> MakeOCRRequest(string imageFilePath)
 		{
@@ -54,7 +54,7 @@ namespace NotaFiscal.api
 			return binaryReader.ReadBytes((int)fileStream.Length);
 		}
 
-
+		/*
         public async Task<IList<VisionRetorno>> ProcessaNotasAsync(IList<string> listaPathNotas)
         {
             var visionRetornos = new List<VisionRetorno>(); ;
@@ -65,58 +65,61 @@ namespace NotaFiscal.api
 
             return visionRetornos;
         }
-        
-        public async Task<VisionRetorno> ProcessaNota(string pathNota)
-        {
-            var conteudoImagem = await MakeOCRRequest(pathNota);
-            bool validado = false;
+		*/
 
-            //Retorna a nota ja separada atraves da clase requisitor 
-            var requisitor = JsonConvert.DeserializeObject<Requisitor>(conteudoImagem);
+		public async Task<VisionRetorno> ProcessaNota(string pathNota)
+		{
+			var conteudoImagem = await MakeOCRRequest(pathNota);
+			bool validado = false;
 
-            //Se a nota tiver for a nota e nao a mensagem que ela não pode ser encontrada ela valida
-            if (requisitor.ToString().Length == 44)
-            {
-                //Acabei de criar essa parte que pretendo usar no colocar no banco de dados, para o usua
-                validado = Validador(requisitor.ToString());
-            }
+			//Retorna a nota ja separada atraves da clase requisitor 
+			var requisitor = (JsonConvert.DeserializeObject<Requisitor>(conteudoImagem)).ToString();
 
-            return new VisionRetorno
-            {
-                ConteudoImagem = requisitor.ToString(),
-                Validada = validado
-            };
-        }
+			//Se tiver 44 caracteres ela pode ser validada
+			if (requisitor.Length == 44)
+			{
+				//Retorna um Boleano se a nota for valida
+				validado = Validador(requisitor);
+			}
 
-        private bool Validador(string notaFiscal)   //esse e o calculo da validacao da nota 
-        {
-            int numeroValidador, resto;
-            int soma = 0;
-            for (int i = 42, multiplicador = 2; i >= 0; i--, multiplicador++)
-            {
-                if (multiplicador > 9)
-                {
-                    multiplicador = 2;
-                }
-                if (Char.IsNumber(notaFiscal[i]))
-                {
-                    soma += ((int)Char.GetNumericValue(notaFiscal[i]) * multiplicador);
-                }
-            }
+			return new VisionRetorno
+			{
+				ConteudoImagem = requisitor,
+				Validada = validado
+			};
+		}
 
-            resto = soma % 11;
-            if (resto >= 10)
-                numeroValidador = 0;
-            else
-                numeroValidador = 11 - resto;
+		#region validacao de nota fiscal
 
-            if (notaFiscal[43].Equals(numeroValidador.ToString()[0]))
-                return true;
-            else
-                return false;
-        }
+		//esse e o calculo da validacao da nota 
+		private bool Validador(string notaFiscal)
+		{
+			int numeroValidador, resto;
+			int soma = 0;
+			for (int i = 42, multiplicador = 2; i >= 0; i--, multiplicador++)
+			{
+				if (multiplicador > 9)
+				{
+					multiplicador = 2;
+				}
+				if (Char.IsNumber(notaFiscal[i]))
+				{
+					soma += ((int)Char.GetNumericValue(notaFiscal[i]) * multiplicador);
+				}
+			}
 
+			resto = soma % 11;
+			if (resto >= 10)
+				numeroValidador = 0;
+			else
+				numeroValidador = 11 - resto;
 
-    }
+			if (notaFiscal[43].Equals(numeroValidador.ToString()[0]))
+				return true;
+			else
+				return false;
+		}
 
+		#endregion
+	}
 }

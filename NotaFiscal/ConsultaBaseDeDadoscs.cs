@@ -17,18 +17,9 @@ namespace NotaFiscal
 			InitializeComponent();
 		}
 
-		private void nOTA_FISCALBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-		{
-			this.Validate();
-			this.nOTA_FISCALBindingSource.EndEdit();
-			this.tableAdapterManager.UpdateAll(this.nFDBDataSet);
-
-		}
-
 		private void ConsultaBaseDeDadoscs_Load(object sender, EventArgs e)
 		{
-			// TODO: esta linha de código carrega dados na tabela 'nFDBDataSet.NOTA_FISCAL'. Você pode movê-la ou removê-la conforme necessário.
-			this.nOTA_FISCALTableAdapter.Fill(this.nFDBDataSet.NOTA_FISCAL);
+
 		}
 	}
 }
