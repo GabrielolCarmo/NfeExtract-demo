@@ -69,7 +69,8 @@ namespace NotaFiscal.api
 
 		public async Task<VisionRetorno> ProcessaNota(string pathNota)
 		{
-			var conteudoImagem = await MakeOCRRequest(pathNota);
+            byte[] imagem = GetImageAsByteArray(pathNota);
+            var conteudoImagem = await MakeOCRRequest(pathNota);
 			bool validado = false;
 
 			//Retorna a nota ja separada atraves da clase requisitor 
@@ -85,8 +86,9 @@ namespace NotaFiscal.api
 			return new VisionRetorno
 			{
 				ConteudoImagem = requisitor,
-				Validada = validado
-			};
+				Validada = validado,
+                ImagemEmByteArray = imagem
+            };
 		}
 
 		#region validacao de nota fiscal

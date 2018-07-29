@@ -96,14 +96,24 @@ namespace NotaFiscal
 				var retorno = await visionExecutor.ProcessaNota(nota);
 
 				textBoxNumeroDaNota.Text = retorno.ConteudoImagem;
-			}
+
+                //Salva no Banco de Dados
+                SalvarNoBD(retorno.ConteudoImagem, nota, retorno.ImagemEmByteArray, retorno.Validada);
+            }
 
 			//Informa quando o programa terminou
 			labelElementosProcessados.Text = String.Format("PROCESSADO {0} / {1}", elementoExaminado, enderecos.Count);
 			labelStatus.Text = "";
-
 			return true;
 		}
+
+
+        public void SalvarNoBD(string numeroDaNota, string tituloDaNota, byte[] imagemDaNota, bool statusDaNota)
+        {
+            var tableAdapter = new NotaFiscalBDDataSetTableAdapters.notaFiscalTableAdapter();
+            tableAdapter.Insert(imagemDaNota, numeroDaNota, statusDaNota, tituloDaNota);
+        }
+
 		#endregion
 
 	}
