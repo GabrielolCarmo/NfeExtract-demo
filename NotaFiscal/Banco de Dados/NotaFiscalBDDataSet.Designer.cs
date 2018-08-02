@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace NotaFiscal {
+namespace NotaFiscal.Banco_de_Dados {
     
     
     /// <summary>
@@ -716,7 +716,7 @@ namespace NotaFiscal {
         }
     }
 }
-namespace NotaFiscal.NotaFiscalBDDataSetTableAdapters {
+namespace NotaFiscal.Banco_de_Dados.NotaFiscalBDDataSetTableAdapters {
     
     
     /// <summary>

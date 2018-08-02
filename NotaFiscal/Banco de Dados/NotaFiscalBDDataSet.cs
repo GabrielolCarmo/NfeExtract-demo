@@ -1,4 +1,4 @@
-﻿namespace NotaFiscal
+﻿namespace NotaFiscal.Banco_de_Dados
 {
 
 

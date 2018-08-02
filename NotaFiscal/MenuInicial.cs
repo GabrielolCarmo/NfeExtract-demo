@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NotaFiscal.api;
+using NotaFiscal.Banco_de_Dados;
 using Newtonsoft.Json;
 using System.IO;
 
@@ -110,7 +111,7 @@ namespace NotaFiscal
 
         public void SalvarNoBD(string numeroDaNota, string tituloDaNota, byte[] imagemDaNota, bool statusDaNota)
         {
-            var tableAdapter = new NotaFiscalBDDataSetTableAdapters.notaFiscalTableAdapter();
+            var tableAdapter = new Banco_de_Dados.NotaFiscalBDDataSetTableAdapters.notaFiscalTableAdapter();
             tableAdapter.Insert(imagemDaNota, numeroDaNota, statusDaNota, tituloDaNota);
         }
 

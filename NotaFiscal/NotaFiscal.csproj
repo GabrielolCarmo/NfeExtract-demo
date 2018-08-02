@@ -51,10 +51,10 @@
     <Compile Include="api\Requisitor.cs" />
     <Compile Include="api\Vision.cs" />
     <Compile Include="api\VisionRetorno.cs" />
-    <Compile Include="ConsultaBaseDeDadoscs.cs">
+    <Compile Include="Banco de Dados\ConsultaBaseDeDadoscs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsultaBaseDeDadoscs.Designer.cs">
+    <Compile Include="Banco de Dados\ConsultaBaseDeDadoscs.Designer.cs">
       <DependentUpon>ConsultaBaseDeDadoscs.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuInicial.cs">
@@ -63,17 +63,17 @@
     <Compile Include="MenuInicial.Designer.cs">
       <DependentUpon>MenuInicial.cs</DependentUpon>
     </Compile>
-    <Compile Include="NotaFiscalBDDataSet.cs">
+    <Compile Include="Banco de Dados\NotaFiscalBDDataSet.cs">
       <DependentUpon>NotaFiscalBDDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="NotaFiscalBDDataSet.Designer.cs">
+    <Compile Include="Banco de Dados\NotaFiscalBDDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NotaFiscalBDDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ConsultaBaseDeDadoscs.resx">
+    <EmbeddedResource Include="Banco de Dados\ConsultaBaseDeDadoscs.resx">
       <DependentUpon>ConsultaBaseDeDadoscs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuInicial.resx">
@@ -89,15 +89,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="NotaFiscalBDDataSet.xsc">
+    <None Include="Banco de Dados\NotaFiscalBDDataSet.xsc">
       <DependentUpon>NotaFiscalBDDataSet.xsd</DependentUpon>
     </None>
-    <None Include="NotaFiscalBDDataSet.xsd">
+    <None Include="Banco de Dados\NotaFiscalBDDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>NotaFiscalBDDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="NotaFiscalBDDataSet.xss">
+    <None Include="Banco de Dados\NotaFiscalBDDataSet.xss">
       <DependentUpon>NotaFiscalBDDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
